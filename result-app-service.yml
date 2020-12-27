@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+   name: result-service #pod'lar birbirleriyle konusurken bu name ile iletisim kurarlar
+   labels: 
+      name: result-service
+      app: demo-voting-app
+spec:
+   type: NodePort #disarisi ile iletisime gececegi icin disariya acmamiza yarar
+   ports:
+     - port: 80
+       targetPort: 80
+       nodePort: 30005
+   selector: # pod'daki labellar
+      name: result-app-pod
+      app: demo-voting-app
